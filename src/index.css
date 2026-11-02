@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --fg: #0d0d0d;
+  --accent: #0a0a0a;
+  --on-accent: #ffffff;
+  --soft: #f2f2f2e0;
+  --deep: #0a0a0a;
+  --grad-a: #0a0a0a;
+  --grad-b: #5b5a5a;
+}
+
+.dark {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --fg: #fafafa;
+  --accent: #fafafa;
+  --on-accent: #0a0a0a;
+  --soft: #141414;
+  --deep: #000000;
+  --grad-a: #fafafa;
+  --grad-b: #7a7a7a;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-soft: var(--soft);
+  --color-deep: var(--deep);
+}
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-hand: 'Caveat', cursive;
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-bg text-fg font-sans antialiased; overflow-x: hidden; }
+
+.label { @apply text-[11px] font-semibold uppercase tracking-[0.3em] text-accent; }
+
+.grad {
+  background-image: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
