@@ -42,3 +42,7 @@ dist-ssr/
 
 # Logs
 *.log
+
+# Windows system files
+desktop.ini
+Thumbs.db
