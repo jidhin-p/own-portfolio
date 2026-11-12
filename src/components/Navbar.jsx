@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
-import { Sun, Moon, Menu, X } from 'lucide-react'
+import { Menu, X, Certificate } from 'lucide-react'
 
-const links = ['Home', 'About', 'Skills', 'Projects', 'Contact']
+const links = ['Home', 'About', 'Skills', 'Projects', 'Contact', 'Certifications']
 
-export default function Navbar({ dark, toggle }) {
+export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('home')
   const { scrollYProgress } = useScroll()
@@ -23,7 +23,7 @@ export default function Navbar({ dark, toggle }) {
   }, [])
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-fg/10 bg-bg/95 text-fg">
+    <header className="fixed inset-x-3 top-3 z-50 overflow-hidden rounded-[25px] border border-fg/10 bg-bg/95 text-fg shadow-sm md:inset-x-6">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-5">
         <a href="#home" className="text-xl font-bold tracking-tight">Jidhin<span className="text-accent">.</span></a>
 
@@ -42,9 +42,7 @@ export default function Navbar({ dark, toggle }) {
         </ul>
 
         <div className="flex items-center gap-1">
-          <button onClick={toggle} aria-label="Toggle theme" className="rounded-full p-2 hover:bg-fg/10">
-            {dark ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
+                                     
           <button onClick={() => setOpen(o => !o)} aria-label="Menu" className="rounded-full p-2 hover:bg-fg/10 md:hidden">
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>

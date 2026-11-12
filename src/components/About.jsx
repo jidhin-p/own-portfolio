@@ -1,44 +1,72 @@
-import { MapPin, GraduationCap, BookOpen, Download } from 'lucide-react'
+import { Code, Trophy, CalendarDays, ArrowRight } from 'lucide-react'
+import { FaReact, FaPhp } from 'react-icons/fa'
+import { projects, certificates, EXPERIENCE_STAT } from '../data'
 import Reveal from './Reveal'
+
+const stats = [
+  { Icon: Code, value: `${projects.length}+`, label: 'Projects' },
+  { Icon: Trophy, value: `${certificates.length}+`, label: 'Certifications' },
+  { Icon: CalendarDays, value: EXPERIENCE_STAT.value, label: EXPERIENCE_STAT.label },
+]
+
+function Tile({ className = '', delay = 0, children }) {
+  return (
+    <div
+      className={`glass glass-blur floaty absolute grid h-14 w-14 place-items-center rounded-2xl sm:h-16 sm:w-16 ${className}`}
+      style={{ animationDelay: `${delay}s` }}
+    >
+      {children}
+    </div>
+  )
+}
 
 export default function About() {
   return (
-    <section id="about" className="overflow-hidden bg-surface py-20 text-fg md:py-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 md:grid-cols-2">
+    <section id="about" className="theme-dark relative overflow-hidden py-20 md:py-32">
+      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-6 md:grid-cols-2">
         <Reveal>
-          <p className="label mb-4">About Me</p>
-          <h2 className="text-4xl font-bold tracking-tight md:text-5xl">A bit about me</h2>
-          <p className="mt-6 max-w-md text-sm leading-7 text-fg/70">
-            Hey,i'm Jidhin, I'm a <b>developer</b> who enjoys turning ideas into real, useful digital experiences.
-
-I love exploring new <b>technologies</b>, solving problems, and building <b>websites</b> that look good and work smoothly. For me, development is not just about writing code — it's about learning, experimenting, and finding better ways to build things.
-
-I'm always curious about what's next and excited to keep growing with every project I create.
+          <p className="eyebrow mb-6">About Me</p>
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            Hi, I’m Jidhin <span className="wave"></span>
+          </h2>
+          <p className="mt-5 max-w-lg text-xl font-medium leading-snug sm:text-2xl">
+            I’m a <span className="font-bold text-accent">Fullstack Developer</span>{' '}
+            <span className="text-fg/60">who loves turning ideas into powerful web applications.</span>
           </p>
-          <p className="mt-5 max-w-md text-sm leading-7 text-fg/70">
-            I work with HTML, CSS, JavaScript, React and PHP. I'm always curious, keep learning, and love exploring new technologies.
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-fg/60">
+            I enjoy learning new technologies, solving problems, and building things that make an impact.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-8 text-xs">
-            <div className="flex items-center gap-3"><MapPin size={18} className="text-accent" /> Kerala, India</div>
-            <div className="flex items-center gap-3"><GraduationCap size={22} className="text-accent" />
-              <span>B.A. History<br /><span className="text-fg/50">Calicut University</span></span></div>
-            <div className="flex items-center gap-3"><BookOpen size={22} className="text-accent" />
-              <span>Reading<br /><span className="text-fg/50">My Hobby</span></span></div>
+          <div className="mt-8 grid max-w-lg grid-cols-3 gap-3">
+            {stats.map(({ Icon, value, label }) => (
+              <div key={label} className="glass glass-blur rounded-2xl p-3 sm:p-4">
+                <Icon size={20} className="text-accent" />
+                <p className="mt-2 text-xl font-bold sm:text-2xl">{value}</p>
+                <p className="text-[11px] text-fg/60 sm:text-xs">{label}</p>
+              </div>
+            ))}
           </div>
 
-          <a href="/Jidhin_CV.pdf" download
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-xs font-semibold text-on-accent transition hover:opacity-90">
-            <Download size={14} /> Download CV
+          <a href="#skills"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-on-accent transition hover:opacity-90">
+            Know More <ArrowRight size={16} />
           </a>
         </Reveal>
 
-        <Reveal delay={0.2} className="relative mb-10 md:mb-0">
-          <div className="absolute -left-5 -top-5 h-full w-full rounded-3xl bg-accent/10" />
-          <div className="relative rotate-3 overflow-hidden rounded-3xl shadow-xl transition duration-500 hover:rotate-0">
-            <img src="/coding.png" alt="Jidhin hiking" className="h-[340px] w-full object-cover grayscale md:h-[460px]" />
+        <Reveal delay={0.15} className="relative mx-auto w-full max-w-sm sm:max-w-md">
+          <svg aria-hidden="true" viewBox="0 0 400 520" preserveAspectRatio="none"
+            className="pointer-events-none absolute -inset-8 h-[calc(100%+4rem)] w-[calc(100%+4rem)]" fill="none">
+            <ellipse cx="200" cy="260" rx="215" ry="150" transform="rotate(-28 200 260)" stroke="rgba(255,255,255,0.28)" strokeWidth="1" />
+          </svg>
+
+          <div className="glass relative overflow-hidden rounded-[28px] p-2">
+            <img src="/coding.png" alt="Jidhin" loading="lazy"
+              className="h-[340px] w-full rounded-[22px] object-cover grayscale sm:h-[440px]" />
           </div>
-          <p className="absolute -bottom-10 right-4 -rotate-6 font-hand text-2xl leading-6 text-fg/60">Better<br />Days<br />Ahead</p>
+
+          <Tile className="-left-4 top-8 sm:-left-8" delay={0}><Code size={26} /></Tile>
+          <Tile className="-right-3 top-1/3 sm:-right-8" delay={1.2}><FaReact size={28} className="text-[#61dafb]" /></Tile>
+          <Tile className="-right-2 bottom-10 sm:-right-6" delay={2.4}><FaPhp size={30} className="text-[#a5a8d6]" /></Tile>
         </Reveal>
       </div>
     </section>

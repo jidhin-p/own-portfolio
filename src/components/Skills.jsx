@@ -1,45 +1,113 @@
-import { skills, experience } from '../data'
+import { GraduationCap, Briefcase, ArrowRight } from 'lucide-react'
+import { skills, experience, LINKS } from '../data'
 import Reveal from './Reveal'
 
-export default function Skills() {
+// dark glass-il kaanaan: valare dark icon colours (GitHub, Next.js) light aakkunnu
+const fixColor = c => {
+  const h = (c || '#ffffff').replace('#', '')
+  const n = parseInt(h.length === 3 ? h.split('').map(x => x + x).join('') : h, 16)
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b < 70 ? '#f4f4f4' : c
+}
+
+function SkillTile({ s }) {
+  const { name, Icon, color } = s
   return (
-    <section id="skills" className="bg-bg py-20 text-fg md:py-32">
-      <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-2">
+    <div className="glass w-28 shrink-0 rounded-2xl p-3 text-center sm:w-36 sm:p-4">
+      <Icon size={28} color={fixColor(color)} className="mx-auto" />
+      <p className="mt-2 text-[11px] font-medium sm:text-xs">{name}</p>
+    </div>
+  )
+}
+
+// dir: 'left' (valath -> idath) allenkil 'right' (idath -> valath)
+function SkillRow({ items, dir, seconds }) {
+  const reps = Math.max(1, Math.ceil(16 / items.length))
+  const list = Array.from({ length: reps }, () => items).flat()
+  return (
+    <div className="marquee-wrap fade-x overflow-hidden">
+      <div
+        className={`${dir === 'left' ? 'marquee-left' : 'marquee-right'} flex w-max`}
+        style={{ animationDuration: `${list.length * seconds}s` }}
+      >
+        {[0, 1].map(k => (
+          <div key={k} className="flex shrink-0 gap-3 pr-3 sm:gap-4 sm:pr-4">
+            {list.map((s, i) => <SkillTile key={i} s={s} />)}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function Skills() {
+  const half = Math.ceil(skills.length / 2)
+  const row1 = skills.slice(0, half)
+  const row2 = skills.slice(half)
+
+  return (
+    <section id="skills" className="theme-dark relative overflow-hidden py-20 md:py-32">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6">
+        {/* TECHNOLOGIES */}
         <Reveal>
-          <p className="label mb-4">My Skills & Experience</p>
-          <h2 className="text-4xl font-bold tracking-tight md:text-5xl">Skills that build<br /><span className="grad">real things</span></h2>
-          <p className="mt-5 max-w-sm text-sm text-fg/70">I work with modern technologies to create fast, responsive and accessible web experiences.</p>
-
-          <h3 className="mb-5 mt-12 font-semibold">Technical Skills</h3>
-          <div className="grid max-w-md grid-cols-2 gap-4 sm:grid-cols-3">
-            {skills.map(({ name, level, Icon }, i) => (
-              <Reveal key={name} delay={i * 0.05} y={16}>
-                <div className="rounded-2xl border border-fg/10 bg-surface p-5 text-center transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg">
-                  <Icon size={32} className="mx-auto text-accent" />
-                  <p className="mt-3 text-xs font-semibold">{name}</p>
-                  <p className="text-[10px] text-fg/50">{level}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <p className="eyebrow mb-6">My Skills</p>
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            Technologies I <span className="grad">Work With</span>
+          </h2>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-fg/60 sm:text-base">
+            A blend of modern tools and frameworks to build scalable and beautiful applications.
+          </p>
         </Reveal>
 
-        <Reveal delay={0.15}>
-          <div className="rounded-3xl bg-deep p-6 text-white shadow-xl md:p-8">
-            <h3 className="mb-8 text-lg font-semibold">Experience</h3>
-            <ol className="relative space-y-8 border-l border-white/15 pl-8">
-              {experience.map(e => (
-                <li key={e.role} className="relative">
-                  <span className="absolute -left-[37px] top-1 h-3 w-3 rounded-full bg-[#a3b565]" />
-                  <h4 className="text-sm font-semibold">{e.role}</h4>
-                  <p className="text-xs text-white/60">{e.place}</p>
-                  <p className="mt-1 text-xs text-white/50">{e.time}</p>
-                  <p className="mt-2 text-xs leading-5 text-white/70">{e.text}</p>
-                </li>
-              ))}
+        {/* SKILLS CAROUSEL: randu rows, randu dishayil */}
+        <div aria-hidden="true" className="relative left-1/2 mt-10 w-screen -translate-x-1/2 space-y-3 sm:space-y-4">
+          <SkillRow items={row1} dir="left" seconds={3} />
+          <SkillRow items={row2} dir="right" seconds={3.4} />
+        </div>
+        <ul className="sr-only">
+          {skills.map(s => <li key={s.name}>{s.name}</li>)}
+        </ul>
+
+        {/* JOURNEY */}
+        <div className="mt-20 grid gap-12 border-t border-white/10 pt-16 md:grid-cols-[1fr_1.4fr]">
+          <Reveal>
+            <p className="eyebrow mb-6">My Journey</p>
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+              Experience &amp; <span className="grad">Education</span>
+            </h2>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-fg/60 sm:text-base">
+              A continuous journey of learning, building and growing as a developer.
+            </p>
+            <a href={LINKS.resume} download
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-on-accent transition hover:opacity-90">
+              View Full Resume <ArrowRight size={16} />
+            </a>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <ol className="relative">
+              {experience.map((e, i) => {
+                const Icon = /course|certif|graduat|educat|degree/i.test(e.role) ? GraduationCap : Briefcase
+                return (
+                  <li key={e.role} className="relative flex gap-5 pb-9 last:pb-0">
+                    {i < experience.length - 1 && (
+                      <span className="absolute left-5 top-10 bottom-0 w-px -translate-x-1/2 bg-white/15" />
+                    )}
+                    <span className="glass relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full">
+                      <Icon size={16} />
+                    </span>
+                    <div>
+                      <span className="glass inline-block rounded-full px-3 py-0.5 text-xs font-medium">{e.time}</span>
+                      <h4 className="mt-2 text-lg font-semibold">{e.role}</h4>
+                      <p className="text-sm text-fg/60">{e.place}</p>
+                      <p className="mt-1.5 max-w-md text-sm text-fg/60">{e.text}</p>
+                    </div>
+                  </li>
+                )
+              })}
             </ol>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   )

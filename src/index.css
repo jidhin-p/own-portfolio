@@ -1,29 +1,17 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg: #fafafa;
-  --surface: #ffffff;
-  --fg: #0d0d0d;
-  --accent: #0a0a0a;
-  --on-accent: #ffffff;
-  --soft: #f2f2f2e0;
-  --deep: #0a0a0a;
+  --bg: #ffffff;
+  --surface: #0B0B0C;
+  --fg: #0b0e0f;
+  --accent: #050505;
+  --on-accent: #fbfafa;
+  --soft: #0B0B0C;
+  --deep: #0B0B0C;
   --grad-a: #0a0a0a;
-  --grad-b: #5b5a5a;
+  --grad-b: #c2bebe;
 }
 
-.dark {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --fg: #fafafa;
-  --accent: #fafafa;
-  --on-accent: #0a0a0a;
-  --soft: #141414;
-  --deep: #000000;
-  --grad-a: #fafafa;
-  --grad-b: #7a7a7a;
-}
 
 @theme inline {
   --color-bg: var(--bg);
@@ -51,3 +39,201 @@ body { @apply bg-bg text-fg font-sans antialiased; overflow-x: hidden; }
   background-clip: text;
   color: transparent;
 }
+
+
+
+
+
+
+/* ================= HERO ================= */
+.hero-bg {
+  /* mobile: card mukalil cream, text thaazhe navy */
+  background: linear-gradient(180deg, #F4EDE0 0, #F4EDE0 120px, #0B0B0C 460px);
+}
+@media (min-width: 768px) {
+  .hero-bg {
+    /* desktop: idath navy (text), valath cream (card) */
+    background: linear-gradient(105deg, #0B0B0C 0%, #0B0B0C 40%, #F4EDE0 80%, #F4EDE0 100%);
+  }
+}
+
+/* gradient-inte mukalil text kaanaan hero-inu mathram light colours */
+.hero-scope {
+  --fg: #f4f6fb;
+  --accent: #F4EDE0;
+  --on-accent: #0B0B0C;
+  --grad-a: #F4EDE0;
+  --grad-b: #aebbd9;
+}
+
+
+
+
+/* ---------- Marquee / carousel ---------- */
+@keyframes marquee-left {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes marquee-right {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+.marquee-left  { animation: marquee-left 40s linear infinite; will-change: transform; }
+.marquee-right { animation: marquee-right 40s linear infinite; will-change: transform; }
+
+
+/* randu vashavum fade aavunna edges */
+.fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* "reduce motion" on aakkiyavarkku animation illa, kai kondu scroll cheyyaam */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-left, .marquee-right { animation: none; }
+  .marquee-wrap { overflow-x: auto; }
+  .fade-x { -webkit-mask-image: none; mask-image: none; }
+}
+
+
+/* ============ THEMES (hero colours: navy #14213D, cream #F4EDE0) ============ */
+/* Ethu section tag-ilum class kodukkaam: theme-navy / theme-cream / theme-ink */
+
+.theme-navy {
+  --sec-bg: #FFFFFF;      /* section background */
+  --bg: #eff1f5;          /* section-inte ullile cards */
+  --fg: #0B0B0C;          /* text */
+  --accent: #0B0B0C;      /* buttons, icons, labels, tags */
+  --on-accent: #FFFFFF;   /* button-inte ullile text */
+  --grad-a: #F4EDE0;      /* heading gradient */
+  --grad-b: #aebbd9;
+  background-color: var(--sec-bg);
+  color: var(--fg);
+}
+
+.theme-cream {
+  --sec-bg: #F4EDE0;
+  --bg: #FBF7EF;
+  --surface: #FBF7EF;
+  --soft: #E8DCC4;
+  --on-accent: #F4EDE0;
+  background-color: var(--sec-bg);
+  color: var(--fg);
+}
+
+.theme-ink {
+  --fg: #F4EDE0;
+  --accent: #F4EDE0;
+  --grad-a: #F4EDE0;
+  --grad-b: #aebbd9;
+
+  background-color: var(--sec-bg);
+  color: var(--fg);
+}
+
+
+
+
+/* ================= GRADIENT BACKGROUNDS ================= */
+/* idath navy -> valath cream (hero pole). md = tablet-inu mukalil, lg = laptop-inu mukalil */
+@media (min-width: 768px) {
+  .grad-lr {
+    background-image: linear-gradient(105deg, #0B0B0C 0%, #0B0B0C 35%, #F4EDE0 85%, #F4EDE0 100%);
+  }
+}
+@media (min-width: 1024px) {
+  .grad-lr-lg {
+    background-image: linear-gradient(105deg, #0B0B0C 0%, #0B0B0C 35%, #F4EDE0 85%, #F4EDE0 100%);
+  }
+}
+
+
+
+/* mukalil cream -> thaazhe dark navy (FOOTER-ilekku cherum) */
+.grad-bt {
+  background-image: linear-gradient(180deg, #c4c1c1 0%, #f8f8f9 35%, #000000 100%);
+}
+
+
+/* ================= PURE BLACK (Skills) ================= */
+.theme-black {
+  --sec-bg: #000000;   /* section background */
+  --bg: #0b0b0c;
+  --surface: #111111;  /* skill cards */
+  --soft: #1a1a1a;
+  --deep: #111111;     /* Experience card */
+  --fg: #fafafa;       /* text */
+  --accent: #fafafa;   /* label, hover border */
+  --on-accent: #000000;
+  --grad-a: #fafafa;   /* "real things" gradient text */
+  --grad-b: #8a8a8a;
+  background-color: var(--sec-bg);
+  color: var(--fg);
+}
+
+
+/* ================= WHITE (Projects) ================= */
+.theme-white {
+  --sec-bg: #FFFFFF;     /* section background */
+  --bg: #FFFFFF;         /* project cards */
+  --surface: #F5F5F5;
+  --soft: #EDEDED;       /* image placeholder */
+  --deep: #0B0B0C;
+  --fg: #0B0B0C;         /* text */
+  --accent: #0B0B0C;     /* active tab, label, tags */
+  --on-accent: #FFFFFF;
+  --grad-a: #0B0B0C;     /* "recent work" gradient */
+  --grad-b: #8a8a8a;
+  background-color: var(--sec-bg);
+  color: var(--fg);
+}
+
+
+/* ============ REFERENCE THEME: black + cream light streak ============ */
+.theme-dark {
+  --sec-bg: #0b0b0c;
+  --bg: #111113;
+  --surface: #151517;
+  --soft: #1b1b1e;
+  --deep: #0b0b0c;
+  --fg: #f7f5f0;
+  --accent: #F4EDE0;
+  --on-accent: #0b0b0c;
+  --grad-a: #ffffff;
+  --grad-b: #9da0d2;
+  color: var(--fg);
+  background-color: #0b0b0c;
+  background-image:
+    linear-gradient(112deg, transparent 0%, transparent 62%, rgba(255,255,255,0.14) 62.2%, rgba(255,255,255,0) 72%),
+    linear-gradient(105deg, #0b0b0c 0%, #0b0b0c 45%, #2b2a29 62%, #b9b4aa 82%, #F4EDE0 100%);
+}
+@media (max-width: 767px) {
+  .theme-dark {
+    background-image: linear-gradient(105deg, #0b0b0c 0%, #0b0b0c 68%, #262524 88%, #6f6b64 100%);
+  }
+}
+
+/* glass cards (dark-tinted, cream bhaagath grey aayi kaanum) */
+.glass {
+  background: linear-gradient(135deg, rgba(18,18,20,0.72), rgba(18,18,20,0.58));
+  border: 1px solid rgba(255,255,255,0.13);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 12px 30px rgba(0,0,0,0.35);
+}
+.glass-blur { -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+
+/* "ABOUT ME ———" label */
+.eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+}
+.eyebrow::after {
+  content: ''; height: 1px; width: clamp(60px, 12vw, 200px);
+  background: linear-gradient(90deg, rgba(255,255,255,0.5), transparent);
+}
+
+/* floating tiles + wave */
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.floaty { animation: floaty 6s ease-in-out infinite; }
+@keyframes wave { 0%, 60%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(14deg); } 20%, 40% { transform: rotate(-8deg); } 50% { transform: rotate(10deg); } }
+.wave { display: inline-block; transform-origin: 70% 70%; animation: wave 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .floaty, .wave { animation: none; } }

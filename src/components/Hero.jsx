@@ -33,7 +33,7 @@ export default function Hero() {
   }, [go])
 
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden bg-soft text-fg">
+    <section id="home" className="hero-scope hero-bg relative min-h-screen overflow-hidden text-fg">
       <div className="relative z-0 h-[440px] md:absolute md:inset-0 md:h-auto">
         {show3D && (
           <motion.div className="absolute inset-0"
@@ -42,14 +42,14 @@ export default function Hero() {
               <Lanyard
                 frontImage="/card-front.png"
                 backImage="/card-back.png"
-                cardColor="#ffffff"
+                cardColor="#040000"
                 orientation="portrait"
                 finish="glossy"
                 cornerRadius={0.3}
                 size={desktop ? 0.6 : 0.62}
                 anchor={desktop ? 'right' : 'center'}
                 strapLength={0.5}
-                strapColor="#2eaadf"
+                strapColor="#001000"
                 strapWidth={0.65}
                 metal="silver"
                 gravity={1}
@@ -63,7 +63,7 @@ export default function Hero() {
           </motion.div>
         )}
         {show3D && (
-          <p className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 text-[11px] text-fg/40 md:bottom-8 md:left-[73%]">
+          <p className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 text-[11px] text-/40 md:bottom-8 md:left-[73%]">
             {desktop ? 'Developer' : 'Developer'}
           </p>
         )}
@@ -76,7 +76,7 @@ export default function Hero() {
             Turning Ideas<br />into Interactive<br />
             <span className="grad">Experiences.</span>
           </motion.h1>
-          <motion.p variants={item} className="mt-6 max-w-md text-sm leading-relaxed text-fg/70 will-change-[transform,opacity]">
+          <motion.p variants={item} className="mt-6 max-w-md text-sm leading-relaxed text-bg/70 will-change-[transform,opacity]">
             As a fullstack developer focused on building modern, responsive and user-friendly web experiences.
           </motion.p>
           <motion.div variants={item} className="pointer-events-auto mt-8 flex w-fit flex-wrap gap-3 will-change-[transform,opacity]">
@@ -85,15 +85,15 @@ export default function Hero() {
               View My Projects <ArrowRight size={14} />
             </a>
             <a href="#contact"
-              className="rounded-full border border-fg/25 px-6 py-3 text-xs font-semibold transition hover:bg-fg/5">
+              className="rounded-full border border-fg/25 px-6 py-3 text-xs font-semibold transition hover:bg-bg/5">
               Contact Me
             </a>
           </motion.div>
           <motion.div variants={item} className="pointer-events-auto mt-8 flex w-fit gap-5 text-lg will-change-[transform,opacity] md:mt-10">
-            <a href="https://github.com/" aria-label="GitHub" className="text-fg/60 transition hover:text-accent"><FaGithub /></a>
-            <a href="https://linkedin.com/" aria-label="LinkedIn" className="text-fg/60 transition hover:text-accent"><FaLinkedinIn /></a>
-            <a href="https://x.com/" aria-label="X" className="text-fg/60 transition hover:text-accent"><FaXTwitter /></a>
-            <a href="mailto:jidhinj61@gmail.com" aria-label="Email" className="text-fg/60 transition hover:text-accent"><Mail size={18} /></a>
+            <a href="https://github.com/jidhin-p" aria-label="GitHub" className="text-fg/60 transition hover:text-bg"><FaGithub /></a>
+            <a href="https://www.linkedin.com/in/jidhin-p/" aria-label="LinkedIn" className="text-fg/60 transition hover:text-bg"><FaLinkedinIn /></a>
+            <a href="https://x.com/" aria-label="X" className="text-fg/60 transition hover:text-bg"><FaXTwitter /></a>
+            <a href="jidhinj61@gmail.com" aria-label="Email" className="text-fg/60 transition hover:text-bg"><Mail size={18} /></a>
           </motion.div>
         </motion.div>
       </div>
