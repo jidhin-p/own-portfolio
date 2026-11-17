@@ -80,7 +80,7 @@ export default function Skills() {
             </p>
             <a href={LINKS.resume} download
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-on-accent transition hover:opacity-90">
-              View Full Resume <ArrowRight size={16} />
+               Resume <ArrowRight size={16} />
             </a>
           </Reveal>
 

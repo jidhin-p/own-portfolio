@@ -47,13 +47,13 @@ body { @apply bg-bg text-fg font-sans antialiased; overflow-x: hidden; }
 
 /* ================= HERO ================= */
 .hero-bg {
-  /* mobile: card mukalil cream, text thaazhe navy */
+  /* mobile: card mukalil cream, text thaazhe black */
   background: linear-gradient(180deg, #F4EDE0 0, #F4EDE0 120px, #0B0B0C 460px);
 }
 @media (min-width: 768px) {
   .hero-bg {
-    /* desktop: idath navy (text), valath cream (card) */
-    background: linear-gradient(105deg, #0B0B0C 0%, #0B0B0C 40%, #F4EDE0 80%, #F4EDE0 100%);
+    /* laptop /desktop idath black ,valath cream*/
+    background: linear-gradient(105deg, #0b0b0c 20%, #0b0b0c 50%, #2f2e2c 60%, #a9a59c 93%, #F4EDE0 100%);
   }
 }
 

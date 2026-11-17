@@ -38,7 +38,7 @@ export const projects = [
 
 export const certificates = [
   { title: 'Certified SOC Analyst (CSA)', issuer: 'EC-Council', year: '2025', img: '/eccouncil.png',logo:''},
-  { title: 'PHP Full Stack Developer Certification', issuer: 'Avodha', year: '2025-2026', img: '',},
+  { title: 'PHP Full Stack Developer Certification', issuer: 'Avodha', year: '2025-2026', img: '/fullstack.jpeg',},
   { title: 'Claude Code in Action', issuer: 'Anthropic', year: '2024', img: '/anthropic.jpg',},
   { title: 'Internship Experiance Certification', issuer: 'Squarebraket Innovation ', year: '2026-3 Month', img: '/internship.png',},
   { title: 'NSDC Skill India Certification', issuer: 'Ministry of Skill Development and Entrepreneurship (MSDE), Government of India', year: '2026', img:'',},
@@ -51,7 +51,7 @@ export const LINKS = {
   linkedin: 'https://www.linkedin.com/in/jidhin-p/',
   Instagram: 'https://www.instagram.com/_jidhin_._/',
   email: 'jidhinj61@gmail.com',
-  resume: '/Jidhin_CV.pdf',
+  resume: '/Jidhin_p.pdf',
 }
 
 // About-ile 3aamathe stat (Projects/Certifications auto aanu)

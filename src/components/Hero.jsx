@@ -49,7 +49,7 @@ export default function Hero() {
                 size={desktop ? 0.6 : 0.62}
                 anchor={desktop ? 'right' : 'center'}
                 strapLength={0.5}
-                strapColor="#001000"
+                strapColor="#090909"
                 strapWidth={0.65}
                 metal="silver"
                 gravity={1}

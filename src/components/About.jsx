@@ -61,7 +61,7 @@ export default function About() {
 
           <div className="glass relative overflow-hidden rounded-[28px] p-2">
             <img src="/coding.png" alt="Jidhin" loading="lazy"
-              className="h-[340px] w-full rounded-[22px] object-cover grayscale sm:h-[440px]" />
+              className="h-[340px] w-full rounded-[22px] object-cover  sm:h-[440px]" />
           </div>
 
           <Tile className="-left-4 top-8 sm:-left-8" delay={0}><Code size={26} /></Tile>
